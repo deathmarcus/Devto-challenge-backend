@@ -46,4 +46,4 @@ const postDev = new mongoose.Schema({
     }
 })
 
-module.exports _ mongoose.model("postDev", postDev)
+module.exports = mongoose.model("postDev", postDev)
