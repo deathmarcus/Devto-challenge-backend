@@ -5,10 +5,15 @@ const server = express()
 
 // Routers
 const routerAuth = require("./routes/auth.route")
-
+const routerUser = require("./routes/user.route")
+const routerPost = require("./routes/post.route")  
 // Middlewares
 server.use(cors())
 server.use(express.json())
+
+
 server.use("/auth", routerAuth)
+server.use("/users", routerUser)
+server.use("/posts", routerPost) 
 
 module.exports = server
