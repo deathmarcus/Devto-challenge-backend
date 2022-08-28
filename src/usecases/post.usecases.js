@@ -5,4 +5,6 @@ const createPost = (postData) => {
     return postDev
 }
 
+const updatePost = 
+
 module.exports = { createPost }
