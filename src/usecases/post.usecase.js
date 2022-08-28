@@ -15,6 +15,7 @@ const getPost = (id) => {
     return post
 }
 
+
 const editPost = (id, postData) => {
     const post = PostDev.findByIdAndUpdate(id, postData, {returnDocument: "after"})
     return post
