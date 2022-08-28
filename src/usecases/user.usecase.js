@@ -7,8 +7,7 @@ const createUser = async (userData) => {
   console.log(userData)
   const hashPassword = await bcrypt.hash(userData.password, 10)
   console.log(hashPassword)
-  const user = User.create({...userData, password: hashPassword })
-  console.log(user)
+  const user =  User.create({...userData, password: hashPassword })
   return user
 }
 

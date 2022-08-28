@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   userNickname: {
     type: String,
     required: false,
-    default: `${userName} ${userLastname}`
+    default: "user",
   },
   userProfilepic: {
     type: String,
