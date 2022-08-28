@@ -51,7 +51,7 @@ router.get("/", async (request, response) => {
   }
 });
 
-router.get("/:id", auth, async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
     const { params } = request;
     const post = await getPost(params.id);
