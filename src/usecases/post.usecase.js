@@ -1,7 +1,11 @@
 const PostDev = require("../models/post.model")
+const {getUser} = require("../usecases/user.usecase")
 
-const createPost = (postData) => {
-    const postDev = PostDev.create(postData)
+const createPost = async (postData) => {
+    const user = await getUser(postData.postAuthor)
+    console.log("user:",user)
+    const postDataWithId ={...postData, postAuthor : user.userNickname, postAuthorId :postData.postAuthor}
+    const postDev = PostDev.create(postDataWithId)
     return postDev
 }
 

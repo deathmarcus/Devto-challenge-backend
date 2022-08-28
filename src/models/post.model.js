@@ -2,6 +2,9 @@ const mongoose = require("mongoose")
 
 const postSchema = new mongoose.Schema({
     postAuthor: {
+        type: String
+    },
+    postAuthorId: {
         type: String,
         required: true
     },
@@ -30,28 +33,12 @@ const postSchema = new mongoose.Schema({
     },
     postTags: {
         type:
-        {
-            0: {
+        [
+            {
                 type: String,
                 default:""
-            },
-            _id:false,
-            1: {
-                type: String,
-                default:""
-            },
-            _id:false,
-            2: {
-                type: String,
-                default:""
-            },
-            _id:false,
-            3: {
-                type: String,
-                default:""
-            },
-            _id:false
-        }
+            }  
+        ]
     },
     postTimeToRead: {
         type: Number
