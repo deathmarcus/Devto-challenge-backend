@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const postDev = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
     postAuthor: {
         type: String,
         required: true
@@ -10,28 +10,47 @@ const postDev = new mongoose.Schema({
         required: true
     },
     postChangeDate: {
-        type: Date,
-        default: Date.now()
+        type: Date
     },
     postCreationDate: {
         type: Date,
         default: Date.now()
     },
     postImage: {
-        type: String
+        type: String,
+        default:"https://picsum.photos/200/300?grayscale=random=37"
     },
     postLikesCount: {
-        type: Number
+        type: Number,
+        default:0
     },
     postSavedCount: {
-        type: Number
+        type: Number,
+        default:0
     },
     postTags: {
         type:
         {
-            tags: {
-                type: String
-            }
+            0: {
+                type: String,
+                default:""
+            },
+            _id:false,
+            1: {
+                type: String,
+                default:""
+            },
+            _id:false,
+            2: {
+                type: String,
+                default:""
+            },
+            _id:false,
+            3: {
+                type: String,
+                default:""
+            },
+            _id:false
         }
     },
     postTimeToRead: {
@@ -42,8 +61,9 @@ const postDev = new mongoose.Schema({
         required: true
     },
     postUnicornCount: {
-        type: Number
+        type: Number,
+        default:0        
     }
 })
 
-module.exports = mongoose.model("postDev", postDev)
+module.exports = mongoose.model("postSchema", postSchema)
