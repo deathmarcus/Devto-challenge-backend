@@ -13,7 +13,6 @@ const createUser = async (userData) => {
 
 const getUser = (id) => {
   const user = User.findById(id)
-  const { userNickname, userProfilepic } = user
   return user
 }
 
