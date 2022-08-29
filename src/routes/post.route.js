@@ -39,7 +39,7 @@ router.get("/", async (request, response) => {
     response.json({
       success: true,
       data: {
-        posts,
+        posts
       },
     });
   } catch (error) {
