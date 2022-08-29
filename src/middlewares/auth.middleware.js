@@ -19,16 +19,12 @@ const auth = (request, response, next) => {
 
 const verifyOwner = async (request, response, next) => {
     try {
-        console.log("request", request.params.id)
         const authorization = request.headers.authorization || ""
         const token = authorization.replace("Bearer ", "")
         const verifiedOwner = jwt.verify(token)
-        console.log("verified", verifiedOwner.id)
         const userId = await getPost(request.params.id)
         const { postAuthorId } = userId
-        console.log("postAuthorId", postAuthorId)
         if(verifiedOwner.id === postAuthorId){
-            console.log("ya pasaste el if")
             next()
         }else{
             throw createError(401, "No eres el creador del post")

@@ -13,8 +13,10 @@ const createUser = async (userData) => {
 
 const getUser = (id) => {
   const user = User.findById(id)
-  return user
+  { userNickname, userProfilepic }
+  return { userNickname, userProfilepic }
 }
+
 
 
 module.exports = {
