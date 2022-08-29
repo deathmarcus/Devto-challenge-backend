@@ -1,6 +1,6 @@
 const { request } = require("express");
 const express = require("express");
-const auth = require("../middlewares/auth.middleware");
+const { auth, verifyOwner } = require("../middlewares/auth.middleware");
 const {
   createPost,
   getAllPosts,
@@ -89,7 +89,7 @@ router.patch("/:id", auth, async (request, response) => {
   }
 });
 
-router.delete("/:id", auth, async (request, response) => {
+router.delete("/:id", auth, verifyOwner, async (request, response) => {
   try {
     const { params } = request;
     const post = await removePost(params.id);
