@@ -1,11 +1,12 @@
-const User = require("../models/user.model")
 const bcrypt = require("bcrypt")
+const User = require("../models/user.model")
 const createError = require("http-errors")
 const jwt = require("../lib/jwt.lib")
+const { default: mongoose } = require("mongoose")
 
 
 const login = async (email, textPlainPassword) => {
-    const user = await User.findOne( {email} )
+    const user = await User.findOne({ userEmail: email})
     if(!user) throw createError(401, "No estás autorizado")
 
     const isValidPassword = await bcrypt.compare(textPlainPassword, user.password)
