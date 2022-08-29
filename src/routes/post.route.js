@@ -70,7 +70,7 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-router.patch("/:id", auth, async (request, response) => {
+router.patch("/:id", auth, verifyOwner, async (request, response) => {
   try {
     const { params, body } = request;
     const post = await editPost(params.id, body);
