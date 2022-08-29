@@ -1,5 +1,6 @@
 const jwt = require("../lib/jwt.lib")
 const createError = require("http-errors")
+const { getPost } = require("../usecases/post.usecase")
 
 const auth = (request, response, next) => {
     try {
@@ -16,14 +17,17 @@ const auth = (request, response, next) => {
     }
 }
 
-const verifyOwner = (request, response, next) => {
+const verifyOwner = async (request, response, next) => {
     try {
-        console.log("request", request.params)
+        console.log("request", request.params.id)
         const authorization = request.headers.authorization || ""
         const token = authorization.replace("Bearer ", "")
         const verifiedOwner = jwt.verify(token)
         console.log("verified", verifiedOwner.id)
-        if(verifiedOwner.id === request.params.id){
+        const userId = await getPost(request.params.id)
+        const { postAuthorId } = userId
+        console.log("postAuthorId", postAuthorId)
+        if(verifiedOwner.id === postAuthorId){
             console.log("ya pasaste el if")
             next()
         }else{
