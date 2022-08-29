@@ -37,7 +37,7 @@ const postSchema = new mongoose.Schema({
             {
                 type: String,
                 default:""
-            }  
+            }
         ]
     },
     postTimeToRead: {
@@ -49,7 +49,7 @@ const postSchema = new mongoose.Schema({
     },
     postUnicornCount: {
         type: Number,
-        default:0        
+        default:0
     }
 })
 
