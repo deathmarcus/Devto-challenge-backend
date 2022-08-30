@@ -7,7 +7,10 @@ const getLikes = (filters) => {
 }
 
 const addLikes = (id, data) => {
-    const likeAdd = LikePost.findByIdAndUpdate(id, data, {returnDocument:"after"});
+    //let newLikeId = []
+    //newLikeId.push(data.post.likes)//{...data, ...data.likes}
+    //console.log(data, newLikeId)
+    const likeAdd = LikePost.findById(id)//, newLikeId, {returnDocument:"after"});
     return likeAdd
 }
 
@@ -16,8 +19,8 @@ const removeLikes = (id) => {
     return likeRem
 }
 
-const newLike = (data) => {
-    const newLikeObject = LikePost.create(data);
+const newLike = (like) => {
+    const newLikeObject = LikePost.create(like);
     return newLikeObject
 }
 

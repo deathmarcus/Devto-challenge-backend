@@ -14,13 +14,12 @@ const router = express.Router();
 router.post("/", async (request, response) => {
   const { body } = request;
   try {
-    console.log(body);
     const user = await createPost(body);
     response.status(201);
     response.json({
       success: true,
       data: {
-        user,
+        user
       },
     });
   } catch (error) {
@@ -88,6 +87,7 @@ router.patch("/:id", auth, verifyOwner, async (request, response) => {
     });
   }
 });
+
 
 router.delete("/:id", auth, verifyOwner, async (request, response) => {
   try {
