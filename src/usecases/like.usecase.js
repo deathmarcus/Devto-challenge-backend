@@ -20,9 +20,15 @@ const removeLikes = (id) => {
     return likeRem
 }
 
-const newLike = (like) => {
-    const newLikeObject = LikePost.create(like);
+const newLike = async (body) => {
+    const { postId } = body.post
+    const postIdExist = await LikePost.exists({"post.postId": postId})
+    if (!postIdExist) {
+    const newLikeObject = LikePost.create(body);
     return newLikeObject
+    } else {
+        return false
+    }
 }
 
 module.exports = { getLikes, removeLikes, addLikes, newLike }
