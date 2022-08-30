@@ -39,7 +39,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: 0
   },
-
 })
 
 userSchema.plugin(uniqueValidator)
