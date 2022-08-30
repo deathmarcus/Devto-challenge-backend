@@ -22,8 +22,8 @@ const verifyOwner = async (request, response, next) => {
         const authorization = request.headers.authorization || ""
         const token = authorization.replace("Bearer ", "")
         const verifiedOwner = jwt.verify(token)
-        const userId = await getPost(request.params.id)
-        const { postAuthorId } = userId
+        const postUserId = await getPost(request.params.id)
+        const { postAuthorId } = postUserId
         if(verifiedOwner.id === postAuthorId){
             next()
         }else{
