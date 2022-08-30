@@ -1,4 +1,5 @@
 const LikePost = require("../models/likes.model");
+let newLikeData = []
 
 
 const getLikes = (filters) => {
@@ -6,8 +7,11 @@ const getLikes = (filters) => {
     return likes
 }
 
-const addLikes = (id, data) => {
-    const likeAdd = LikePost.findByIdAndUpdate(id, data, {returnDocument:"after"});
+const addLikes = async (id, data) => {
+    const likeAdd = await LikePost.findById(id);
+    likeAdd.post.likes.push(data.post.likes)
+    likeAdd.post.likesCounts += 1
+    likeAdd.save()
     return likeAdd
 }
 
@@ -16,8 +20,8 @@ const removeLikes = (id) => {
     return likeRem
 }
 
-const newLike = (data) => {
-    const newLikeObject = LikePost.create(data);
+const newLike = (like) => {
+    const newLikeObject = LikePost.create(like);
     return newLikeObject
 }
 

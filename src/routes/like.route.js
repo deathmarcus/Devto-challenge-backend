@@ -12,7 +12,6 @@ const router = express.Router();
 router.post("/", async (request, response) => {
     const { body } = request;
     try {
-        console.log(body);
         const likePost = await newLike(body)
         response.status(201)
         response.json({

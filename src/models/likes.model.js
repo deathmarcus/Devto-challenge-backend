@@ -1,22 +1,18 @@
 const mongoose = require("mongoose")
 
 const likeSchema = new mongoose.Schema({
-    postLikesCount: {
-        type: {
-            postId: {
-                type: String,
-                required: true
-            },
-            userIdLikes: {
-                type:
-                {
-                    userId: {
-                        type: String,
-                        required: true
-                    }
-                },
-                required: true
-            }
+    post: {
+        postId: {
+            type: String,
+            required: true
+        },
+        likes: [{
+            type: String,
+            required: true
+        }],
+        likesCounts: {
+            type: Number,
+            default: 0
         }
     }
 })
