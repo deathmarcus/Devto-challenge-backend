@@ -34,6 +34,8 @@ router.get("/:id", async (request, response) => {
     response.json({
       success: true,
       data: {
+        "userName": user.userName,
+        "userLastname": user.userLastname,
         "userNickname": user.userNickname,
         "userProfilePic": user.userProfilepic
       }
