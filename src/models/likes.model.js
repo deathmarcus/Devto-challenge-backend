@@ -3,13 +3,11 @@ const mongoose = require("mongoose")
 const likeSchema = new mongoose.Schema({
     post: {
         postId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'posts',
+            type: String,
             required: true
         },
         likes: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'users',
+            type: String,
             required: true
         }],
         likesCounts: {
