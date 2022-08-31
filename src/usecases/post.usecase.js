@@ -3,7 +3,6 @@ const { getUser } = require("../usecases/user.usecase");
 
 const createPost = async (postData) => {
   const user = await getUser(postData.postAuthor);
-  console.log("user:", user);
   const postDataWithId = {
     ...postData,
     postAuthor: user.userNickname,
