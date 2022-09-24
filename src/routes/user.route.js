@@ -43,6 +43,26 @@ router.get("/:id", async (request, response) => {
     response.json({
       success: true,
       data: {
+        user,
+      },
+    });
+  } catch (error) {
+    response.status(400);
+    response.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+
+router.get("/", async (request, response) => {
+  try {
+    const { params } = request;
+    const user = await getUser(params.id);
+    response.status(201);
+    response.json({
+      success: true,
+      data: {
         userName: user.userName,
         userLastname: user.userLastname,
         userNickname: user.userNickname,
