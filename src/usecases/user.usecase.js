@@ -14,7 +14,7 @@ const getUser = (id) => {
 };
 
 const getGenericUser = (filters) => {
-  const user = User.find(filters);
+  const user = User.findById(filters.id);
   return user;
 };
 

@@ -58,7 +58,8 @@ router.get("/:id", verifyUser, async (request, response) => {
 
 router.get("/", async (request, response) => {
   try {
-    const { params } = request;
+    const { query } = request;
+    console.log("params en ruta get /", query);
     const user = await getGenericUser(query);
     response.status(201);
     response.json({
