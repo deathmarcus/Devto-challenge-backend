@@ -1,46 +1,50 @@
-const mongoose = require("mongoose")
-var uniqueValidator = require('mongoose-unique-validator')
+const mongoose = require("mongoose");
+var uniqueValidator = require("mongoose-unique-validator");
 
 const userSchema = new mongoose.Schema({
   userEmail: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   userName: {
     type: String,
-    required: true
+    required: true,
   },
   userLastname: {
     type: String,
-    required: true
+    required: true,
   },
   userJoinDate: {
     type: Date,
-    default: Date.now()
+    default: Date.now(),
   },
   userNickname: {
     type: String,
     required: false,
     default: "user",
-    unique: true
+    unique: true,
   },
   userProfilepic: {
     type: String,
     required: false,
-    default: "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+    default:
+      "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
   },
-  userPosts:{
+  userPosts: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
-})
+  userChangeDate: {
+    type: Date,
+  },
+});
 
-userSchema.plugin(uniqueValidator)
+userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model("users", userSchema)
+module.exports = mongoose.model("users", userSchema);
