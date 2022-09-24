@@ -1,10 +1,11 @@
-const { request, response } = require("express");
+const { request, response, query } = require("express");
 const express = require("express");
 const {
   createUser,
   getUser,
   editUser,
   removeUser,
+  getGenericUser,
 } = require("../usecases/user.usecase");
 const {
   auth,
@@ -35,7 +36,7 @@ router.post("/", async (request, response) => {
   }
 });
 
-router.get("/:id", async (request, response) => {
+router.get("/:id", verifyUser, async (request, response) => {
   try {
     const { params } = request;
     const user = await getUser(params.id);
@@ -58,7 +59,7 @@ router.get("/:id", async (request, response) => {
 router.get("/", async (request, response) => {
   try {
     const { params } = request;
-    const user = await getUser(params.id);
+    const user = await getGenericUser(query);
     response.status(201);
     response.json({
       success: true,

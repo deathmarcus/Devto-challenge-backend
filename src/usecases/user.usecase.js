@@ -13,6 +13,11 @@ const getUser = (id) => {
   return user;
 };
 
+const getGenericUser = (filters) => {
+  const user = User.find(filters);
+  return user;
+};
+
 const editUser = (id, userData) => {
   const changedUser = { ...userData, userChangeDate: Date.now() };
   const editedUser = User.findByIdAndUpdate(id, changedUser, {
@@ -31,4 +36,5 @@ module.exports = {
   getUser,
   editUser,
   removeUser,
+  getGenericUser,
 };
