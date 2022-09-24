@@ -6,7 +6,11 @@ const {
   editUser,
   removeUser,
 } = require("../usecases/user.usecase");
-const { auth, verifyOwner } = require("../middlewares/auth.middleware");
+const {
+  auth,
+  verifyOwner,
+  verifyUser,
+} = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
@@ -54,7 +58,7 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-router.patch("/:id", auth, verifyOwner, async (request, response) => {
+router.patch("/:id", auth, verifyUser, async (request, response) => {
   try {
     const { params, body } = request;
     const user = await editUser(params.id, body);
@@ -73,7 +77,7 @@ router.patch("/:id", auth, verifyOwner, async (request, response) => {
   }
 });
 
-router.delete("/:id", auth, verifyOwner, async (request, response) => {
+router.delete("/:id", auth, verifyUser, async (request, response) => {
   try {
     const { params } = request;
     const post = await removeUser(params.id);
