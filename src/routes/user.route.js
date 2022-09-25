@@ -44,7 +44,13 @@ router.get("/:id", verifyUser, async (request, response) => {
     response.json({
       success: true,
       data: {
-        user,
+        userEmail: user.userEmail,
+        userLastname: user.userLastname,
+        userName: user.userName,
+        userNickname: user.userNickname,
+        userPosts: user.userPosts,
+        userProfilepic: user.userProfilepic,
+        userJoinDate: user.userJoinDate,
       },
     });
   } catch (error) {
