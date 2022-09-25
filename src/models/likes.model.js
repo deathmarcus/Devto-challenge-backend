@@ -1,20 +1,20 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const likeSchema = new mongoose.Schema({
-    post: {
-        postId: {
-            type: String,
-            required: true
-        },
-        likes: [{
-            type: String,
-            required: true
-        }],
-        likesCounts: {
-            type: Number,
-            default: 0
-        }
-    }
-})
+  postId: {
+    type: String,
+    required: true,
+  },
+  likes: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  likesCounts: {
+    type: Number,
+    default: 0,
+  },
+});
 
-module.exports = mongoose.model("likes", likeSchema)
+module.exports = mongoose.model("likes", likeSchema);
