@@ -20,7 +20,7 @@ const addLikes = async (id, data) => {
   return updateAddLike;
 };
 
-const removeLike = async (params, body) => {
+const removeLike = async (body) => {
   const { postId, likes } = body;
   const likeDocument = await LikePost.findOne({ postId });
   console.log("likeDocument", likeDocument);
