@@ -52,12 +52,11 @@ router.get("/:id", async (request, response) => {
 router.patch("/:id", async (request, response) => {
   try {
     const { params, body } = request;
-    console.log("params y body", params, body);
-    const likeEdit = await addLikes(params.id, body);
+    const like = await addLikes(params.id, body);
     response.json({
       success: true,
       data: {
-        likeEdit,
+        like,
       },
     });
   } catch (error) {
