@@ -20,9 +20,22 @@ const addLikes = async (id, data) => {
   return updateAddLike;
 };
 
-const removeLikes = (id) => {
-  const likeRem = LikePost.findByIdAndDelete(id);
-  return likeRem;
+const removeLike = async (params, body) => {
+  const { postId, likes } = body;
+  const likeDocument = await LikePost.findOne({ postId });
+  console.log("likeDocument", likeDocument);
+  const likeDocumentId = likeDocument._id.toString();
+  likeDocument.likes.remove(likes);
+  likeDocument.likesCounts = likeDocument.likes.length;
+  const updatedLikeDocument = await LikePost.findOneAndUpdate(
+    likeDocumentId,
+    likeDocument,
+    {
+      returnDocument: "after",
+    }
+  );
+
+  return updatedLikeDocument;
 };
 
 const newLike = async (body) => {
@@ -32,8 +45,19 @@ const newLike = async (body) => {
     const newLikeObject = LikePost.create(body);
     return newLikeObject;
   } else {
-    return false;
+    const likeAdd = await LikePost.findOne({ postId });
+    const likeDocumentId = likeAdd._id.toString();
+    likeAdd.likes.push(body.likes);
+    likeAdd.likesCounts = likeAdd.likes.length;
+    const updatedAddLike = await LikePost.findOneAndUpdate(
+      likeDocumentId,
+      likeAdd,
+      {
+        returnDocument: "after",
+      }
+    );
+    return updatedAddLike;
   }
 };
 
-module.exports = { getLikes, removeLikes, addLikes, newLike };
+module.exports = { getLikes, removeLike, addLikes, newLike };

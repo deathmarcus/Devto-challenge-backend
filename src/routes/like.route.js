@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   getLikes,
-  removeLikes,
+  removeLike,
   addLikes,
   newLike,
 } = require("../usecases/like.usecase");
@@ -52,7 +52,7 @@ router.get("/:id", async (request, response) => {
 router.patch("/:id", async (request, response) => {
   try {
     const { params, body } = request;
-    const like = await addLikes(params.id, body);
+    const like = await removeLike(params.id, body);
     response.json({
       success: true,
       data: {
