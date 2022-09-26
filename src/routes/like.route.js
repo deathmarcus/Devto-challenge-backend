@@ -49,10 +49,10 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-router.patch("/:id", async (request, response) => {
+router.patch("/", async (request, response) => {
   try {
-    const { params, body } = request;
-    const like = await removeLike(params.id, body);
+    const { body } = request;
+    const like = await removeLike(body);
     response.json({
       success: true,
       data: {
