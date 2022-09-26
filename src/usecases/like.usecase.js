@@ -1,8 +1,15 @@
 const LikePost = require("../models/likes.model");
 
-const getLikes = (filters) => {
-  const likes = LikePost.find(filters);
-  return likes;
+const getLikes = async (filters) => {
+  const { postId, userId } = filters;
+  const likeDocument = await LikePost.findOne({ postId });
+  const likeDocumentId = likeDocument._id.toString();
+  const userExistInDocument = likeDocument.likes.includes(userId);
+  const result = {
+    userExistInDocument,
+    numberOfLikes: likeDocument.likesCounts,
+  };
+  return result;
 };
 
 const addLikes = async (id, data) => {

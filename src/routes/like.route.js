@@ -29,15 +29,14 @@ router.post("/", async (request, response) => {
   }
 });
 
-router.get("/:id", async (request, response) => {
+router.get("/", async (request, response) => {
   try {
-    const { params } = request;
-    console.log("params", params);
-    const likeId = await getLikes(params);
+    const { query } = request;
+    const postLikeInfo = await getLikes(query);
     response.json({
       success: true,
       data: {
-        likeId,
+        postLikeInfo,
       },
     });
   } catch (error) {
