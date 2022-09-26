@@ -29,10 +29,11 @@ router.post("/", async (request, response) => {
   }
 });
 
-router.get("/", async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
-    const { query } = request;
-    const postLikeInfo = await getLikes(query);
+    const postId = request.params.id;
+    const userId = request.headers.userid;
+    const postLikeInfo = await getLikes(postId, userId);
     response.json({
       success: true,
       data: {
@@ -51,6 +52,7 @@ router.get("/", async (request, response) => {
 router.patch("/", async (request, response) => {
   try {
     const { body } = request;
+    console.log();
     const like = await removeLike(body);
     response.json({
       success: true,

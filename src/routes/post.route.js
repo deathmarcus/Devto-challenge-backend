@@ -19,7 +19,7 @@ router.post("/", async (request, response) => {
     response.json({
       success: true,
       data: {
-        user
+        user,
       },
     });
   } catch (error) {
@@ -38,7 +38,7 @@ router.get("/", async (request, response) => {
     response.json({
       success: true,
       data: {
-        posts
+        posts,
       },
     });
   } catch (error) {
@@ -52,6 +52,7 @@ router.get("/", async (request, response) => {
 
 router.get("/:id", async (request, response) => {
   try {
+    console.log(request);
     const { params } = request;
     const post = await getPost(params.id);
     response.json({
@@ -87,7 +88,6 @@ router.patch("/:id", auth, verifyOwner, async (request, response) => {
     });
   }
 });
-
 
 router.delete("/:id", auth, verifyOwner, async (request, response) => {
   try {
