@@ -39,7 +39,7 @@ const removeLike = async (body) => {
 };
 
 const newLike = async (body) => {
-  const { postId } = body;
+  const { postId, likes } = body;
   const postIdExist = await LikePost.exists({ "post.postId": postId });
   if (!postIdExist) {
     const newLikeObject = LikePost.create(body);
@@ -47,6 +47,9 @@ const newLike = async (body) => {
   } else {
     const likeAdd = await LikePost.findOne({ postId });
     const likeDocumentId = likeAdd._id.toString();
+    if (likeAdd.likes.includes(likes)) {
+      return;
+    }
     likeAdd.likes.push(body.likes);
     likeAdd.likesCounts = likeAdd.likes.length;
     const updatedAddLike = await LikePost.findOneAndUpdate(
